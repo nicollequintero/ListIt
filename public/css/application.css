@@ -28,6 +28,7 @@ nav #links {
 nav a {
   color: white;
   text-decoration: none;
+  margin-left: 15px;
 }
 
 #login {
@@ -101,3 +102,4 @@ button:disabled {
 .item input[type=checkbox] {
   margin-right: 10px;
 }
+

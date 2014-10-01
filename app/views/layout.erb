@@ -21,6 +21,7 @@
   <nav>
     <div id="links">
       <% if session[:id] %>
+        <a href="/user/<%= session[:id] %>/list/all">My Lists</a>
         <a href="/logout">Log Out</a>
       <% else %>
         <a href="/session">Log In</a>
