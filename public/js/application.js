@@ -137,7 +137,7 @@ Item.prototype.save = function() {
 Item.prototype.changeDescription = function(description) {
   item.description = description;
   item.status = "changed";
-  View.updateItem(item.id, item.description);
+  View.updateItem(item.id, item.description, item.completed);
   View.disableUpdate();
   View.disableDelete();
 };
@@ -192,7 +192,7 @@ var View = {
     $('#create_list_form :input').attr('disabled',true);
   },
   printItem: function(id, status, description) {
-    $('#item_list').append('<div id="' + id + '"><form><input type="checkbox" name="completed" value="false"> ' + description + '</form></div>')
+    $('#item_list').append('<div id="' + id + '"><form><input type="checkbox" id="completed" value=""><span class="description">' + description + '</span></form></div>')
   },
   clearItemInput: function() {
     $('input[name="description"]').val("");
@@ -212,9 +212,14 @@ var View = {
   disableSave: function() {
     $('#save_list_button').prop('disabled',true);
   },
-  updateItem: function(id, description) {
-    console.log("in update item");
-    $('#'+id).text(description);
+  updateItem: function(id, description, completed) {
+    console.log("new text is: "+ description)
+    $('#'+id).children('form').children('span').text(description);
+    // $('#'+id).children('form').children('span').css('background-color','blue');
+    // $('#'+id).children('.description').html(description);
+    // if (completed) {
+    //   $('#'+id).children('#completed').checked;
+    // };
   },
   enableAdd: function() {
     $('#add_button').prop('disabled',false);
