@@ -66,8 +66,12 @@ $(document).ready(function() {
 
   });
 
+  $('#item_list').on('click','input[type="checkbox"]', function(e){
+    e.stopPropagation();
+  });
+
   $('#item_list').click(function(e){
-    item = List.items[$(e.target).parent().attr("id") -1];
+    item = List.items[$(e.target).closest('div').attr("id") -1];
     View.clearHighlighting();
     View.highlightItem(item.id);
     View.populateText(item.description);
@@ -192,7 +196,7 @@ var View = {
     $('#create_list_form :input').attr('disabled',true);
   },
   printItem: function(id, status, description) {
-    $('#item_list').append('<div id="' + id + '"><form><input type="checkbox" id="completed" value=""><span class="description">' + description + '</span></form></div>')
+    $('#item_list').append('<div id="' + id + '"><form><input type="checkbox" class="checkbox" value=""><span class="description">' + description + '</span></form></div>')
   },
   clearItemInput: function() {
     $('input[name="description"]').val("");
