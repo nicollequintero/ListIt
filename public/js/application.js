@@ -119,7 +119,16 @@ Item.prototype.changeDescription = function(description) {
 };
 
 Item.prototype.update = function() {
-  console.log("updating item" + item.description);
+
+  var item = this;
+
+  $.ajax ({
+    url: '/item',
+    type: 'PUT',
+    data: {description: this.description, id: this.DBid}
+  }).done(function(response){
+    console.log(response);
+  });
 };
 
 var View = {
