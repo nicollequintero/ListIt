@@ -4,7 +4,6 @@ before '/item*' do
 end
 
 post '/item' do
-  p params
   item = Item.create(description: params[:description], list_id: params[:list].to_i)
-  p item
+  item.to_json
 end
