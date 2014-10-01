@@ -1,4 +1,7 @@
 <div id="login">
+  <div class="error">
+    <%= @error if @error %>
+  </div>
   <h3>You are seconds away from greatness</h3>
   <form action="/session" method="POST">
     <input name="username" size="30" placeholder="Username"><br>

@@ -35,3 +35,9 @@ nav a {
   text-align: center;
   line-height: 30px;
 }
+
+.error {
+  height: 1em;
+  color: red;
+  font-size: .75em;
+}
