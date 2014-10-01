@@ -11,6 +11,16 @@ end
 put '/item' do
   item = Item.find(params[:id])
   item.update(description: params[:description])
-  p item
   item.to_json
+end
+
+delete '/item' do
+  item = Item.find(params[:id])
+  list = item.list
+  puts "*" * 30
+  p "ITEM TO DELETE"
+  puts "*" * 30
+  p item
+  item.delete
+  p list.items
 end

@@ -39,6 +39,20 @@ $(document).ready(function() {
     View.clearHighlighting();
   });
 
+  $('#delete_button').click(function(e) {
+    e.preventDefault();
+
+    item = List.items[$(".highlight").attr("id") -1];
+    item.remove();
+
+    View.clearItemInput();
+    View.enableAdd();
+    View.enableSave();
+    View.clearHighlighting();
+    View.disableUpdate();
+    View.disableDelete();
+  });
+
   $('#save_list_button').click(function(e) {
     e.preventDefault();
     List.save();
@@ -76,6 +90,9 @@ var List = {
       }
       else if(item.changed === true) {
         item.update();
+      }
+      else if(item.deleted === true){
+        item.deleteDB();
       };
     });
     View.disableSave();
@@ -89,6 +106,7 @@ function Item (description,owner, id) {
   this.id = id;
   this.DBid = null;
   this.saved = false;
+  this.deleted = false;
 };
 
 Item.prototype.save = function() {
@@ -128,6 +146,20 @@ Item.prototype.update = function() {
     data: {description: this.description, id: this.DBid}
   }).done(function(response){
     console.log(response);
+  });
+};
+
+Item.prototype.remove = function() {
+  this.deleted = true;
+  View.removeItem(this.id);
+};
+
+Item.prototype.deleteDB = function() {
+
+  $.ajax ({
+    url: '/item',
+    type: 'DELETE',
+    data: {id: this.DBid}
   });
 };
 
@@ -180,6 +212,9 @@ var View = {
   },
   enableDelete: function() {
     $('#delete_button').prop('disabled',false);
+  },
+  removeItem: function(id) {
+    $('#'+id).hide();
   }
 
 }
