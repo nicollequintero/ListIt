@@ -47,6 +47,25 @@ nav a {
   margin-bottom: 20px;
 }
 
+#create_list {
+  text-align: center;
+}
+
 #create_items {
   display: none;
+}
+
+button, input[type=submit] {
+  background-color: #3fc0b6;
+  color: white;
+  border-radius: 10px;
+  border: 0px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#create_items_form input {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
