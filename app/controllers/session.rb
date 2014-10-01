@@ -10,7 +10,7 @@ post '/session' do
   user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
   if user
     session[:id] = user.id
-    redirect "user/#{user.id}/list/all"
+    redirect "/user/#{user.id}/list/all"
   else
     session[:error] = "Login Failed. Please try again."
     redirect '/session'
