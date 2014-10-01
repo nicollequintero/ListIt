@@ -90,16 +90,32 @@ var List = {
     this.items.push(item);
     View.printItem(item.id, item.status, item.description);
   },
+  // save: function() {
+  //   this.items.forEach(function(item){
+  //     if(item.saved === false) {
+  //       item.save();
+  //     }
+  //     else if(item.changed === true) {
+  //       item.update();
+  //     }
+  //     else if(item.deleted === true){
+  //       item.deleteDB();
+  //     };
+  //   });
+  //   View.disableSave();
+  // }
   save: function() {
     this.items.forEach(function(item){
-      if(item.saved === false) {
-        item.save();
-      }
-      else if(item.changed === true) {
-        item.update();
-      }
-      else if(item.deleted === true){
-        item.deleteDB();
+      switch(item.status) {
+        case null:
+          item.save();
+          break;
+        case "changed":
+          item.update();
+          break;
+        case "delete":
+          item.deleteDB();
+          break;
       };
     });
     View.disableSave();
@@ -109,12 +125,13 @@ var List = {
 function Item (description,owner, id) {
   this.description = description;
   this.list = owner;
-  this.changed = false;
+  // this.changed = false;
   this.id = id;
   this.DBid = null;
-  this.saved = false;
-  this.deleted = false;
-  this.completed = false;
+  // this.saved = false;
+  // this.deleted = false;
+  // this.completed = false;
+  this.status = null;
 };
 
 Item.prototype.save = function() {
@@ -127,7 +144,8 @@ Item.prototype.save = function() {
     data: {description: this.description, list: this.list, completed: this.completed},
     dataType: 'json'
   }).done(function(response){
-    item.saved = true;
+    // item.saved = true;
+    item.status = "saved";
     item.DBid = response.id;
     console.log(item);
   });
@@ -135,10 +153,11 @@ Item.prototype.save = function() {
 
 Item.prototype.changeDescription = function(description) {
   item.description = description;
-  if (item.saved === true) {
-    item.changed = true;
-    console.log(item);
-  };
+  // if (item.saved === true) {
+  //   item.changed = true;
+  //   console.log(item);
+  // };
+  item.status = "changed";
   View.updateItem(item.id, item.description);
   View.disableUpdate();
   View.disableDelete();
@@ -154,26 +173,41 @@ Item.prototype.update = function() {
     data: {description: this.description, id: this.DBid, completed: this.completed}
   }).done(function(response){
     console.log(response);
+    item.status = "saved";
   });
 };
 
 Item.prototype.remove = function() {
-  this.deleted = true;
+  // if (this.saved === true) {
+  //   this.deleted = true;
+  // }
+  if (this.status) {
+    this.status = "delete"
+  }
   View.removeItem(this.id);
 };
 
 Item.prototype.deleteDB = function() {
 
+  item = this;
+
   $.ajax ({
     url: '/item',
     type: 'DELETE',
     data: {id: this.DBid}
+  }).done(function(){
+    item.status = "deleted"
   });
 };
 
 Item.prototype.toggleCompleted = function() {
   this.completed = !this.completed;
-  item.changed = true;
+  // if (this.saved === true) {
+  //   item.changed = true;
+  // }
+  if (this.status) {
+    item.status = "changed";
+  }
   View.toggleStrikeThrough(item.id);
 };
 
