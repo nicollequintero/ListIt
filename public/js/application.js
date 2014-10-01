@@ -90,20 +90,7 @@ var List = {
     this.items.push(item);
     View.printItem(item.id, item.status, item.description);
   },
-  // save: function() {
-  //   this.items.forEach(function(item){
-  //     if(item.saved === false) {
-  //       item.save();
-  //     }
-  //     else if(item.changed === true) {
-  //       item.update();
-  //     }
-  //     else if(item.deleted === true){
-  //       item.deleteDB();
-  //     };
-  //   });
-  //   View.disableSave();
-  // }
+
   save: function() {
     this.items.forEach(function(item){
       switch(item.status) {
@@ -125,13 +112,10 @@ var List = {
 function Item (description,owner, id) {
   this.description = description;
   this.list = owner;
-  // this.changed = false;
   this.id = id;
   this.DBid = null;
-  // this.saved = false;
-  // this.deleted = false;
-  // this.completed = false;
   this.status = null;
+  this.completed = false;
 };
 
 Item.prototype.save = function() {
@@ -144,7 +128,6 @@ Item.prototype.save = function() {
     data: {description: this.description, list: this.list, completed: this.completed},
     dataType: 'json'
   }).done(function(response){
-    // item.saved = true;
     item.status = "saved";
     item.DBid = response.id;
     console.log(item);
@@ -153,10 +136,6 @@ Item.prototype.save = function() {
 
 Item.prototype.changeDescription = function(description) {
   item.description = description;
-  // if (item.saved === true) {
-  //   item.changed = true;
-  //   console.log(item);
-  // };
   item.status = "changed";
   View.updateItem(item.id, item.description);
   View.disableUpdate();
@@ -178,9 +157,6 @@ Item.prototype.update = function() {
 };
 
 Item.prototype.remove = function() {
-  // if (this.saved === true) {
-  //   this.deleted = true;
-  // }
   if (this.status) {
     this.status = "delete"
   }
@@ -202,9 +178,6 @@ Item.prototype.deleteDB = function() {
 
 Item.prototype.toggleCompleted = function() {
   this.completed = !this.completed;
-  // if (this.saved === true) {
-  //   item.changed = true;
-  // }
   if (this.status) {
     item.status = "changed";
   }
