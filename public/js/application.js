@@ -20,6 +20,7 @@ $(document).ready(function() {
     e.preventDefault();
     // $('body').css('background-color','blue');
     List.addItem($('input[name="description"]').val());
+    View.clearItemInput();
   });
 
   $('#save_list_button').click(function(e) {
@@ -67,5 +68,8 @@ var View = {
   },
   printItem: function(id, status, description) {
     $('#item_list').append('<h5 id="' + id + '">' + description + '</h5>')
+  },
+  clearItemInput: function() {
+    $('input[name="description"]').val("");
   }
 }
