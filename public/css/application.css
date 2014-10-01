@@ -69,3 +69,22 @@ button, input[type=submit] {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+#item_list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 500px;
+}
+
+.highlight {
+  background-color: beige;
+}
+
+input[type=submit]:disabled {
+    background: lightgrey;
+}
+
+button:disabled {
+    background: lightgrey;
+}
