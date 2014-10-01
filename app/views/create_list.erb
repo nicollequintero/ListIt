@@ -2,6 +2,7 @@
   <h1>Create a New list</h1>
   <div class="error">
   </div>
+
   <form id="create_list_form" action="/user/<%= @user.id%>/list" method="POST">
     <input name="name" size="40">
     <input type="submit" value="Create List">
@@ -10,11 +11,17 @@
   <div id="create_items">
       <div class="error">
       </div>
+
     <form id="create_items_form">
       <input name="description" size="35"placeholder="Description">
     </form>
+
     <button id="add_button">Add</button>
     <button id="update_button">Update</button>
     <button id="delete_button">Delete</button>
+
+    <div id="item_list">
+    </div>
+
   </div>
 </div>

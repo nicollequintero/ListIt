@@ -16,6 +16,12 @@ $(document).ready(function() {
 
   });
 
+  $('#add_button').click(function(e) {
+    e.preventDefault();
+    // $('body').css('background-color','blue');
+    List.addItem($('input[name="description"]').val());
+  })
+
 });
 
 var List = {
@@ -23,7 +29,18 @@ var List = {
   init: function(id, name) {
     this.id = id
     this.name = name
+  },
+  addItem: function(description) {
+    item = new Item(description, this.id)
+    this.items.push(item);
+    View.printItem(item.id, item.status, item.description);
   }
+}
+
+function Item (description,owner) {
+  this.description = description;
+  this.list = owner;
+  this.status = "";
 }
 
 var View = {
@@ -32,5 +49,8 @@ var View = {
   },
   disableListForm: function() {
     $('#create_list_form :input').attr('disabled',true);
+  },
+  printItem: function(id, status, description) {
+    $('#item_list').append('<h5 id="' + id + '">' + description + '</h5>')
   }
 }
