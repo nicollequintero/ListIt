@@ -55,13 +55,14 @@ nav a {
 }
 
 button, input[type=submit] {
-  background-color: #3fc0b6;
+font-family: "Roboto Slab";
   color: white;
-  border-radius: 10px;
+  width: 100px;
+  margin: 10px;
+  font-size: 15px;
   border: 0px;
-  padding: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #3fc0b6;
 }
 
 #create_items_form input {

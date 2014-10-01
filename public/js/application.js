@@ -198,7 +198,7 @@ var View = {
     $('#create_list_form :input').attr('disabled',true);
   },
   printItem: function(id, status, description) {
-    $('#item_list').append('<div id="' + id + '"><form><input type="checkbox" class="checkbox" value=""><span class="description">' + description + '</span></form></div>')
+    $('#item_list').append('<div class="item" id="' + id + '"><form><input type="checkbox" class="checkbox" value=""><span class="description">' + description + '</span></form></div>')
   },
   clearItemInput: function() {
     $('input[name="description"]').val("");
