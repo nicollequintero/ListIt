@@ -1,3 +1,4 @@
 class Item < ActiveRecord::Base
-  # Remember to create a migration!
+  belongs_to :list
+  has_one :user, through: :list
 end

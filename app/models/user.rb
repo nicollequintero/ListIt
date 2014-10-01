@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-  # Remember to create a migration!
+  has_many :lists
+  has_many :items, through: :lists
 end

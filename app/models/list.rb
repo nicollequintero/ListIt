@@ -1,3 +1,4 @@
 class List < ActiveRecord::Base
-  # Remember to create a migration!
+  belong_to :user
+  has_many :items
 end
