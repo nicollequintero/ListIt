@@ -20,7 +20,11 @@
 <body>
   <nav>
     <div id="links">
-      <a href="/session">Log In</a>
+      <% if session[:id] %>
+        <a href="/logout">Log Out</a>
+      <% else %>
+        <a href="/session">Log In</a>
+      <% end %>
     </div>
     <div id="title">
       ListIt
