@@ -10,6 +10,8 @@ $(document).ready(function() {
       dataType: "json"
     }).done(function(response){
       List.init(response.id, response.name);
+      View.showItemFields();
+      View.disableListForm();
     });
 
   });
@@ -21,5 +23,14 @@ var List = {
   init: function(id, name) {
     this.id = id
     this.name = name
+  }
+}
+
+var View = {
+  showItemFields: function() {
+    $('#create_items').show();
+  },
+  disableListForm: function() {
+    $('#create_list_form :input').attr('disabled',true);
   }
 }
