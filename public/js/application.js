@@ -15,6 +15,8 @@ $(document).ready(function() {
       View.disableUpdate();
       View.disableDelete();
       View.disableSave();
+      View.hideListForm();
+      View.changePageHeader(List.name);
     });
 
   });
@@ -242,6 +244,12 @@ var View = {
   },
   toggleStrikeThrough: function(id) {
     $('#'+id).toggleClass("strike_through");
+  },
+  hideListForm: function () {
+    $('#create_list_form').hide();
+  },
+  changePageHeader: function (name) {
+    $('h1').text("Editing '" + name + "'")
   }
 
 }
