@@ -16,3 +16,8 @@ post '/session' do
     redirect '/session'
   end
 end
+
+get '/logout' do
+  session.clear
+  redirect '/'
+end
