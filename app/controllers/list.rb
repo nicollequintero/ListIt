@@ -10,3 +10,10 @@ end
 get '/user/:user_id/list' do
   erb :create_list
 end
+
+post '/user/:user_id/list' do
+  p params
+  list = List.create(user: @user, name: params[:name])
+  p list
+  list.to_json
+end

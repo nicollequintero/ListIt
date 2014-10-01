@@ -1,0 +1,13 @@
+<div id="create_list">
+  <h1>Create a New list</h1>
+  <form id="create_list_form" action="/user/<%= @user.id%>/list" method="POST">
+    <input name="name" size="40">
+    <input type="submit" value="Create List">
+  </form>
+
+  <div id="create_items">
+    <form id="create_items_form">
+      <input name="description">
+    </form>
+  </div>
+</div>
