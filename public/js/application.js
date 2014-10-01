@@ -2,35 +2,49 @@ $(document).ready(function() {
 
   $('#create_list_form').submit(function(e){
     e.preventDefault();
-
-    $.ajax ({
-      url: $(e.target).attr("action"),
-      type: "POST",
-      data: $(e.target).serialize(),
-      dataType: "json"
-    }).done(function(response){
-      List.init(response.id, response.name);
-      View.showItemFields();
-      View.disableListForm();
-      View.disableUpdate();
-      View.disableDelete();
-      View.disableSave();
-      View.hideListForm();
-      View.changePageHeader(List.name);
-    });
+    if ($('input[name="name"]').val() == "") {
+      View.errorEmptyListName();
+    }
+    else {
+      $.ajax ({
+        url: $(e.target).attr("action"),
+        type: "POST",
+        data: $(e.target).serialize(),
+        dataType: "json"
+      }).done(function(response){
+        List.init(response.id, response.name);
+        View.showItemFields();
+        View.disableListForm();
+        View.disableUpdate();
+        View.disableDelete();
+        View.disableSave();
+        View.hideListForm();
+        View.changePageHeader(List.name);
+      });
+    };
 
   });
 
   $('#add_button').click(function(e) {
     e.preventDefault();
+
+    if ($('input[name="description"]').val() == "") {
+      View.errorEmptyField();
+    }
+    else {
     List.addItem($('input[name="description"]').val());
     View.clearItemInput();
     View.enableSave();
+    };
   });
 
   $('#update_button').click(function(e) {
     e.preventDefault();
 
+    if ($('input[name="description"]').val() == "") {
+      View.errorEmptyField();
+    }
+    else {
     item = List.items[$(".highlight").attr("id") -1];
     description = $('input[name="description"]').val();
     item.changeDescription(description);
@@ -39,6 +53,8 @@ $(document).ready(function() {
     View.enableAdd();
     View.enableSave();
     View.clearHighlighting();
+    };
+
   });
 
   $('#delete_button').click(function(e) {
@@ -245,11 +261,19 @@ var View = {
   toggleStrikeThrough: function(id) {
     $('#'+id).toggleClass("strike_through");
   },
-  hideListForm: function () {
+  hideListForm: function() {
     $('#create_list_form').hide();
   },
-  changePageHeader: function (name) {
+  changePageHeader: function(name) {
     $('h1').text("Editing '" + name + "'")
+  },
+  errorEmptyField: function() {
+    $('#item_description_error').text("Description cannot be empty");
+    $('#item_description_error').fadeTo(3000,0);
+  },
+  errorEmptyListName: function() {
+    $('#list_name_error').text("List name cannot be blank");
+    $('#list_name_error').fadeTo(3000,0);
   }
 
 }
