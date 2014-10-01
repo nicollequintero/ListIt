@@ -1,6 +1,6 @@
 <h1>Lists for <%= @user.name %></h1>
 <ul>
   <% @user.lists.each do |list| %>
-    <li><a href="/list/<%= list.id %>"><%= list.name %></a></li>
+    <li><a href="/user/<%= @user.id %>/list/<%= list.id %>"><%= list.name %></a></li>
   <% end %>
 </ul>
