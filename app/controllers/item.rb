@@ -4,13 +4,14 @@ before '/item*' do
 end
 
 post '/item' do
-  item = Item.create(description: params[:description], list_id: params[:list].to_i)
+  item = Item.create(description: params[:description], list_id: params[:list].to_i, completed: params[:completed])
   item.to_json
 end
 
 put '/item' do
   item = Item.find(params[:id])
-  item.update(description: params[:description])
+  item.update(description: params[:description]) unless params[:description] == item.description
+  item.update(completed: params[:completed]) unless params[:completed] == item.completed
   item.to_json
 end
 

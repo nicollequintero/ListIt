@@ -53,6 +53,13 @@ $(document).ready(function() {
     View.disableDelete();
   });
 
+  $('#item_list').on('change','input[type="checkbox"]', function (e){
+
+    item = List.items[$(e.target).parent().parent().attr("id") -1];
+    item.toggleCompleted();
+    View.enableSave();
+  });
+
   $('#save_list_button').click(function(e) {
     e.preventDefault();
     List.save();
@@ -107,6 +114,7 @@ function Item (description,owner, id) {
   this.DBid = null;
   this.saved = false;
   this.deleted = false;
+  this.completed = false;
 };
 
 Item.prototype.save = function() {
@@ -116,7 +124,7 @@ Item.prototype.save = function() {
   $.ajax({
     url: '/item',
     type: 'POST',
-    data: {description: this.description, list: this.list},
+    data: {description: this.description, list: this.list, completed: this.completed},
     dataType: 'json'
   }).done(function(response){
     item.saved = true;
@@ -143,7 +151,7 @@ Item.prototype.update = function() {
   $.ajax ({
     url: '/item',
     type: 'PUT',
-    data: {description: this.description, id: this.DBid}
+    data: {description: this.description, id: this.DBid, completed: this.completed}
   }).done(function(response){
     console.log(response);
   });
@@ -163,6 +171,12 @@ Item.prototype.deleteDB = function() {
   });
 };
 
+Item.prototype.toggleCompleted = function() {
+  this.completed = !this.completed;
+  item.changed = true;
+  View.toggleStrikeThrough(item.id);
+};
+
 var View = {
   showItemFields: function() {
     $('#create_items').show();
@@ -171,7 +185,7 @@ var View = {
     $('#create_list_form :input').attr('disabled',true);
   },
   printItem: function(id, status, description) {
-    $('#item_list').append('<div id="' + id + '">' + description + '</div>')
+    $('#item_list').append('<div id="' + id + '"><form><input type="checkbox" name="completed" value="false"> ' + description + '</form></div>')
   },
   clearItemInput: function() {
     $('input[name="description"]').val("");
@@ -215,6 +229,9 @@ var View = {
   },
   removeItem: function(id) {
     $('#'+id).hide();
+  },
+  toggleStrikeThrough: function(id) {
+    $('#'+id).toggleClass("strike_through");
   }
 
 }

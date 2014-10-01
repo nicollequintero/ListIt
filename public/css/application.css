@@ -87,3 +87,7 @@ input[type=submit]:disabled {
 button:disabled {
     background: lightgrey;
 }
+
+.strike_through {
+  text-decoration: line-through;
+}
