@@ -137,7 +137,7 @@ Item.prototype.save = function() {
 Item.prototype.changeDescription = function(description) {
   item.description = description;
   item.status = "changed";
-  View.updateItem(item.id, item.description, item.completed);
+  View.updateItem(item.id, item.description);
   View.disableUpdate();
   View.disableDelete();
 };
@@ -212,14 +212,8 @@ var View = {
   disableSave: function() {
     $('#save_list_button').prop('disabled',true);
   },
-  updateItem: function(id, description, completed) {
-    console.log("new text is: "+ description)
+  updateItem: function(id, description) {
     $('#'+id).children('form').children('span').text(description);
-    // $('#'+id).children('form').children('span').css('background-color','blue');
-    // $('#'+id).children('.description').html(description);
-    // if (completed) {
-    //   $('#'+id).children('#completed').checked;
-    // };
   },
   enableAdd: function() {
     $('#add_button').prop('disabled',false);
