@@ -67,7 +67,7 @@ $(document).ready(function() {
   });
 
   $('#item_list').click(function(e){
-    item = List.items[$(e.target).attr("id") -1];
+    item = List.items[$(e.target).parent().attr("id") -1];
     View.clearHighlighting();
     View.highlightItem(item.id);
     View.populateText(item.description);
