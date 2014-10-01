@@ -20,7 +20,13 @@ $(document).ready(function() {
     e.preventDefault();
     // $('body').css('background-color','blue');
     List.addItem($('input[name="description"]').val());
-  })
+  });
+
+  $('#save_list_button').click(function(e) {
+    e.preventDefault();
+    // $('body').css('background-color','blue');
+    List.save();
+  });
 
 });
 
@@ -34,6 +40,11 @@ var List = {
     item = new Item(description, this.id)
     this.items.push(item);
     View.printItem(item.id, item.status, item.description);
+  },
+  save: function() {
+    this.items.forEach(function(item){
+      item.save();
+    });
   }
 }
 
@@ -41,7 +52,11 @@ function Item (description,owner) {
   this.description = description;
   this.list = owner;
   this.status = "";
-}
+};
+
+Item.prototype.save = function () {
+  console.log("saving")
+};
 
 var View = {
   showItemFields: function() {
