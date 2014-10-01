@@ -56,7 +56,11 @@ function Item (description,owner) {
 };
 
 Item.prototype.save = function () {
-  console.log("saving")
+  $.ajax({
+    url: '/item',
+    type: 'POST',
+    data: {description: this.description, list: this.list}
+  });
 };
 
 var View = {
