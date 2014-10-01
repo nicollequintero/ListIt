@@ -1,7 +1,16 @@
 <h1>Lists for <%= @user.name %></h1>
 <a href="/user/<%= @user.id %>/list">Create List</a>
-<ul>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Last Updated</th>
+    <th>Status</th>
+  </tr>
   <% @user.lists.each do |list| %>
-    <li><a href="/user/<%= @user.id %>/list/<%= list.id %>"><%= list.name %></a></li>
+    <tr>
+    <td><a href="/user/<%= @user.id %>/list/<%= list.id %>"><%= list.name %></a></td>
+    <td><%= list.updated_at %></td>
+    <td><%= list.items.first.completed %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
