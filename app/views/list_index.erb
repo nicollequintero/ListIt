@@ -19,7 +19,7 @@
         <td><%= list.updated_at.month %>/<%= list.updated_at.day %>/<%= list.updated_at.year %></td>
         <td><%= list.status %></td>
         <td>
-          <form action="/user/<%= @user.id %>/list/<%= list.id %>" method="POST" id="list_delete">
+          <form action="/user/<%= @user.id %>/list/<%= list.id %>" method="POST" class="list_delete">
             <input type="hidden" name="_method" value="DELETE">
             <input type="submit" value="x">
           </form>
