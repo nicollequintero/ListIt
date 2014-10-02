@@ -14,7 +14,7 @@
       <tr>
       <td><a href="/user/<%= @user.id %>/list/<%= list.id %>" class="remote"><%= list.name %></a></td>
       <td><%= list.updated_at.month %>/<%= list.updated_at.day %>/<%= list.updated_at.year %></td>
-      <td></td>
+      <td><%= list.status %></td>
       <td>
         <form action="/user/<%= @user.id %>/list/<%= list.id %>" method="POST" id="list_delete">
           <input type="hidden" name="_method" value="DELETE">
