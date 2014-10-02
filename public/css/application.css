@@ -2,6 +2,7 @@
   width: 70%;
   margin-right: auto;
   margin-left: auto;
+  color: #575757;
 }
 
 nav {
@@ -113,6 +114,12 @@ table td {
 table {
   margin-right: auto;
   margin-left: auto;
+  text-align: center;
+}
+
+table a {
+  color: #3fc0b6;
+  text-decoration: none;
 }
 
 h1 {
