@@ -134,13 +134,13 @@ $(document).ready(function() {
 
 getData = function () {
 
-    $('#spinner').append('')
+    $('#spinner').append('<i class="fa fa-spinner"></i>');
     $.ajax ({
       url: '/user/1/list/1/data',
       type: 'GET',
       dataType: 'json'
     }).done(function(response){
-      
+      $('#spinner').hide();
       List.init(response.list.id, response.list.name);
       View.showItemFields();
       View.disableUpdate();
@@ -149,7 +149,6 @@ getData = function () {
 
       items = response.items
       for(x = 0; x< items.length; x ++) {
-        // console.log(items[x].description);
         List.addItemDB(items[x].description, items[x].id, items[x].completed)
       };
     });
