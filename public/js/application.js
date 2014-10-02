@@ -165,7 +165,7 @@ var List = {
   addItem: function(description) {
     item = new Item(description, this.id, this.items.length + 1);
     this.items.push(item);
-    View.printItem(item.id, item.status, item.description);
+    View.printItem(item.id, item.description);
   },
   addItemDB: function(description, id, completed) {
     item = new Item(description, this.id, this.items.length + 1);
