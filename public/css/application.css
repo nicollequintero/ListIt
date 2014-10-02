@@ -142,3 +142,8 @@ h1 {
 #display_list {
   text-align: center;
 }
+
+#list_delete input[type=submit] {
+  background-color: white;
+  color: red;
+}

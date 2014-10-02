@@ -27,3 +27,9 @@ get '/user/:user_id/list/:list_id/data' do
   @list = List.find(params[:list_id])
   {list: @list, items: @list.items}.to_json
 end
+
+delete '/user/:user_id/list/:list_id' do 
+  @list = List.find(params[:list_id])
+  @list.delete
+  redirect "/user/#{@user.id}/list/all"
+end

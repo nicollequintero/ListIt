@@ -8,12 +8,19 @@
       <th>Name</th>
       <th>Last Updated</th>
       <th>Status</th>
+      <th>Delete</th>
     </tr>
     <% @user.lists.each do |list| %>
       <tr>
       <td><a href="/user/<%= @user.id %>/list/<%= list.id %>" class="remote"><%= list.name %></a></td>
       <td><%= list.updated_at.month %>/<%= list.updated_at.day %>/<%= list.updated_at.year %></td>
       <td></td>
+      <td>
+        <form action="/user/<%= @user.id %>/list/<%= list.id %>" method="POST" id="list_delete">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="x">
+        </form>
+      </td>
       </tr>
     <% end %>
   </table>
