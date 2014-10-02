@@ -1,0 +1,32 @@
+<div id ="display_list">
+  <h1>Lists for <%= @user.name %></h1>
+  <form action="/user/<%= @user.id %>/list" method="GET">
+    <input type="submit" id="create_list_button" value="Create New List">
+  </form>
+  <% if @user.lists == [] %>
+      <h3>Come on... List It already</h3>
+  <% else %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Last Updated</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+      <% @user.lists.each do |list| %>
+        <tr>
+        <td><a href="/user/<%= @user.id %>/list/<%= list.id %>" class="remote"><%= list.name %></a></td>
+        <td><%= list.updated_at.month %>/<%= list.updated_at.day %>/<%= list.updated_at.year %></td>
+        <td><%= list.status %></td>
+        <td>
+          <form action="/user/<%= @user.id %>/list/<%= list.id %>" method="POST" class="list_delete">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="x">
+          </form>
+        </td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% end %>
+</div>

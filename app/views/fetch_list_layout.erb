@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
+  
   <link rel="stylesheet" href="/css/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/application.css">
   <link href='http://fonts.googleapis.com/css?family=Oswald:700|Roboto+Slab:300|Open+Sans' rel='stylesheet' type='text/css'>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="/js/application.js"></script>
 
   <title></title>
 </head>
-<body>
+<body onload=getData()>
   <nav>
     <div id="links">
       <% if session[:id] %>
         <a href="/user/<%= session[:id] %>/list/all">My Lists</a>
         <a href="/logout">Log Out</a>
       <% else %>
-        <a href="/user">Sign Up</a>
         <a href="/session">Log In</a>
       <% end %>
     </div>
     <div id="title">
-      List It
+      ListIt
     </div>
   </nav>
   <div id="container">

@@ -1,0 +1,156 @@
+#container {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  color: #575757;
+}
+
+nav {
+    width: 100%;
+    background-color: #3fc0b6;
+}
+
+nav #title {
+  padding-bottom: 20px;
+  color: white;
+  font-family: Oswald;
+  font-size: 60px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+nav #links {
+  padding-right: 20px;
+  text-align: right;
+  font-size: 20px;
+  color: white;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+#login, #create_user {
+  text-align: center;
+  line-height: 30px;
+}
+
+.error {
+  height: 1em;
+  color: red;
+  font-size: .75em;
+}
+
+#create_items, #create_list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#create_list {
+  text-align: center;
+}
+
+#create_items {
+  display: none;
+}
+
+button, input[type=submit] {
+font-family: "Roboto Slab";
+  color: white;
+  width: 100px;
+  margin: 10px;
+  font-size: 15px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #3fc0b6;
+}
+
+#create_items_form input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#item_list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  max-width: 500px;
+}
+
+.highlight {
+  background-color: beige;
+}
+
+input[type=submit]:disabled {
+    background: lightgrey;
+}
+
+button:disabled {
+    background: lightgrey;
+}
+
+.strike_through {
+  text-decoration: line-through;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.item input[type=checkbox] {
+  margin-right: 10px;
+}
+
+table td {
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table {
+  margin-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+table a {
+  color: #3fc0b6;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: "Roboto Slab";
+  font-size: 40px;
+  text-align: center;
+  color: gray;
+}
+
+#spinner {
+  font-size: 40px;
+}
+
+#create_list_button {
+  width: auto;
+  font-size: 20px;
+}
+
+#display_list {
+  text-align: center;
+}
+
+.list_delete input[type=submit] {
+  background-color: white;
+  color: red;
+}
+
+#welcome {
+  text-align: center;
+  font-family: "Roboto Slab";
+}

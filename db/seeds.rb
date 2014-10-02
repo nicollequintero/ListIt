@@ -1,0 +1,5 @@
+nic = User.create(name: "Nicolle Quintero", username: "nicolle", password: "quintero", password_confirmation: "quintero")
+list = List.create(name: "Groceries", user: nic)
+tomatoes = Item.create(description: "Tomatoes", list: list)
+cucumbers = Item.create(description: "Cucumbers", list: list)
+milk = Item.create(description: "2 Lactaid Milks", list: list)

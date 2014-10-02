@@ -1,0 +1,27 @@
+<div id="create_list">
+  <h1>Create a New list</h1>
+  <div id="list_name_error" class="error">
+  </div>
+
+  <form id="create_list_form" action="/user/<%= @user.id%>/list" method="POST">
+    <input name="name" size="40">
+    <input type="submit" id="create_list_button" value="Create List">
+  </form>
+
+  <div id="create_items">
+      <div id="item_description_error" class="error">
+      </div>
+
+    <form id="create_items_form">
+      <input name="description" size="35"placeholder="Description">
+    </form>
+
+    <button id="add_button">Add</button>
+    <button id="update_button">Update</button>
+    <button id="delete_button">Delete</button>
+
+    <div id="item_list">
+    </div>
+    <button id="save_list_button">Save List</button>
+  </div>
+</div>
