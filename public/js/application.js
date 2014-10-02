@@ -1,18 +1,62 @@
 $(document).ready(function() {
 
-  // $('#create_user_form').submit(function(e){
-  //   e.preventDefault();
+  $('#create_user_form').submit(function(e){
+    e.preventDefault();
+    console.log("cheking form submit");
+    name = $('input[name="user[name]"]').val();
+    username = $('input[name="user[username]"]').val();
+    password = $('input[name="user[password]"]').val();
+    password_confirmation = $('input[name="user[password_confirmation]"]').val();
+    console.log(password, password_confirmation)
 
-  //   $.ajax ({
-  //     url: $(e.target)attr("action"),
-  //     type: "POST",
-  //     data: $(e.target).serialize(),
-  //     dataType: "json"
-  //   }).done(function(response){
-  //     //if error then show error in div
-  //     //else redirect to login page
-  //   });
-  // });
+    if (passwordLengthOK(password) && passwordsMatch(password, password_confirmation) && usernameLengthOK(username) && namePresent(name)) {
+
+          console.log("about to run ajax");
+
+          $.ajax ({
+            url: $(e.target).attr("action"),
+            type: "POST",
+            data: $(e.target).serialize()//,
+            // dataType: "json"
+          }).done(function(response){
+            console.log("reaching done");
+            window.location = "http://localhost:9393/session";
+            // if(response.error){
+            //   console.log("something was sent back");
+            //   console.log(response);
+            // }
+            // else {
+            //   console.log("nothing was sent back");
+            // };
+          });
+
+      }
+      else {
+
+        if (namePresent(name) === false){
+          $('.error').html("You must enter a name");
+        }
+        else if (usernameLengthOK(username) === false){
+          // console.log("in username legnt not ok");
+          $('.error').html("Username must be at least 8 characters");
+        }
+        else if (passwordLengthOK(password) === false){
+          $('.error').html("Password must be at least 8 characters");
+        }
+        else if (passwordsMatch(password, password_confirmation) === false){
+          $('.error').html("Passwords must match");
+        };
+      };
+
+
+    // if ($('input[name="user[password]"]').val().length < 8) {
+    //   console.log("Less than 8")
+    // }
+
+    // if ($('input[name="user[password]"]').val() != $('input[name="user[password_confirmation]"]').val()) {
+    //   console.log("Passwords must match")
+    // }
+  });
 
   $('.list_delete').submit(function(e){
     e.preventDefault();
@@ -154,6 +198,22 @@ getData = function () {
       };
     });
 }
+
+passwordLengthOK = function(password) {
+  return password.length >= 8;
+};
+
+passwordsMatch = function(p1, p2) {
+  return p1 === p2;
+};
+
+usernameLengthOK = function(username) {
+  return username.length >= 8;
+};
+
+namePresent = function(name) {
+  return name.length > 0;
+};
 
 var List = {
   items: [],
