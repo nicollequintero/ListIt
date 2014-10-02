@@ -149,3 +149,8 @@ h1 {
   background-color: white;
   color: red;
 }
+
+#welcome {
+  text-align: center;
+  font-family: "Roboto Slab";
+}
