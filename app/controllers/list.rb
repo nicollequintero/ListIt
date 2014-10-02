@@ -4,7 +4,7 @@ end
 
 get '/user/:user_id/list/:list_id' do
   @list = List.find(params[:list_id])
-  #add erb later
+  erb :display_list, :layout => :fetch_list_layout
 end
 
 get '/user/:user_id/list' do
@@ -16,4 +16,14 @@ post '/user/:user_id/list' do
   list = List.create(user: @user, name: params[:name])
   p list
   list.to_json
+end
+
+get '/user/1/list/1' do
+	  @list = List.find(params[:list_id])
+  list.to_json
+end
+
+get '/user/:user_id/list/:list_id/data' do 
+  @list = List.find(params[:list_id])
+  {list: @list, items: @list.items}.to_json
 end

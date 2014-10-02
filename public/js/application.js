@@ -1,27 +1,58 @@
 $(document).ready(function() {
 
+  // $('table a').click(function(e) {
+  //   console.log("entering on click remote")
+  //   e.preventDefault();
+  //   // $('body').css('background-color','red');
+
+  //   $.ajax ({
+  //     url: '/user/1/list/1',
+  //     type: 'GET',
+  //     dataType: 'json'
+  //   }).done(function(response){
+      
+  //     List.init(response.list.id, response.list.name);
+  //     View.showItemFields();
+  //     View.disableListForm();
+  //     View.disableUpdate();
+  //     View.disableDelete();
+  //     View.disableSave();
+  //     View.hideListForm();
+  //     View.changePageHeader(List.name);
+
+  //     items = response.items
+  //     for(x = 0; x< items.length; x ++) {
+  //       // console.log(items[x].description);
+  //       List.addItemDB(items[x].description, items[x].id, items[x].completed)
+  //     };
+  //   });
+
+  // });
+
   $('#create_list_form').submit(function(e){
     e.preventDefault();
-    if ($('input[name="name"]').val() == "") {
-      View.errorEmptyListName();
-    }
-    else {
-      $.ajax ({
-        url: $(e.target).attr("action"),
-        type: "POST",
-        data: $(e.target).serialize(),
-        dataType: "json"
-      }).done(function(response){
-        List.init(response.id, response.name);
-        View.showItemFields();
-        View.disableListForm();
-        View.disableUpdate();
-        View.disableDelete();
-        View.disableSave();
-        View.hideListForm();
-        View.changePageHeader(List.name);
-      });
-    };
+    
+
+  if ($('input[name="name"]').val() == "") {
+    View.errorEmptyListName();
+  }
+  else {
+    $.ajax ({
+      url: $(e.target).attr("action"),
+      type: "POST",
+      data: $(e.target).serialize(),
+      dataType: "json"
+    }).done(function(response){
+      List.init(response.id, response.name);
+      View.showItemFields();
+      View.disableListForm();
+      View.disableUpdate();
+      View.disableDelete();
+      View.disableSave();
+      View.hideListForm();
+      View.changePageHeader(List.name);
+    });
+  };
 
   });
 
@@ -101,6 +132,29 @@ $(document).ready(function() {
 
 });
 
+getData = function () {
+
+    $('#spinner').append('')
+    $.ajax ({
+      url: '/user/1/list/1/data',
+      type: 'GET',
+      dataType: 'json'
+    }).done(function(response){
+      
+      List.init(response.list.id, response.list.name);
+      View.showItemFields();
+      View.disableUpdate();
+      View.disableDelete();
+      View.disableSave();
+
+      items = response.items
+      for(x = 0; x< items.length; x ++) {
+        // console.log(items[x].description);
+        List.addItemDB(items[x].description, items[x].id, items[x].completed)
+      };
+    });
+}
+
 var List = {
   items: [],
   init: function(id, name) {
@@ -108,11 +162,18 @@ var List = {
     this.name = name
   },
   addItem: function(description) {
-    item = new Item(description, this.id, this.items.length + 1)
+    item = new Item(description, this.id, this.items.length + 1);
     this.items.push(item);
     View.printItem(item.id, item.status, item.description);
   },
-
+  addItemDB: function(description, id, completed) {
+    item = new Item(description, this.id, this.items.length + 1);
+    item.DBid = id;
+    item.completed = completed;
+    item.status = "saved";
+    this.items.push(item);
+    View.printItem(item.id, item.status, item.description);
+  },
   save: function() {
     this.items.forEach(function(item){
       switch(item.status) {

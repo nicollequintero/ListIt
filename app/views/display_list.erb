@@ -1,0 +1,22 @@
+<div id="display_list">
+  <div id="create_list">
+    <h1><%= @list.name %></h1>
+    <div id="spinner"></div>
+    <div id="create_items">
+        <div id="item_description_error" class="error">
+        </div>
+
+      <form id="create_items_form">
+        <input name="description" size="35"placeholder="Description">
+      </form>
+
+      <button id="add_button">Add</button>
+      <button id="update_button">Update</button>
+      <button id="delete_button">Delete</button>
+
+      <div id="item_list">
+      </div>
+      <button id="save_list_button">Save List</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/application.css">
+  <link href='http://fonts.googleapis.com/css?family=Oswald:700|Roboto+Slab:300|Open+Sans' rel='stylesheet' type='text/css'>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title></title>
+</head>
+<body onload=getData()>
+  <nav>
+    <div id="links">
+      <% if session[:id] %>
+        <a href="/user/<%= session[:id] %>/list/all">My Lists</a>
+        <a href="/logout">Log Out</a>
+      <% else %>
+        <a href="/session">Log In</a>
+      <% end %>
+    </div>
+    <div id="title">
+      ListIt
+    </div>
+  </nav>
+  <div id="container">
+    <%= yield %>
+  </div>
+</body>
+</html>
