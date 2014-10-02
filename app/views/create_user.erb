@@ -1,9 +1,13 @@
 <div id="create_user">
+  <div class="error">
+    <%= @error if @error %>
+  </div>
+  <h3>You'll be glad you did this</h3>
 	<form action="/user" method="POST">
-		<input name="user[name]" placeholder="Full Name">
-		<input name="user[username]" placeholder="Select a username">
-		<input type="password" name="user[name]" placeholder="Enter a secure password">
-		<input type="password" name="user[password_confirmation" placeholer="Re-enter your password">
-		<input type="submit" value="Create Account">
+		<input size="30" name="user[name]" placeholder="Full Name"><br>
+		<input size="30" name="user[username]" placeholder="Select a username"><br>
+		<input size="30" type="password" name="user[name]" placeholder="Enter a secure password"><br>
+		<input size="30" type="password" name="user[password_confirmation" placeholder="Re-enter your password"><br>
+		<input type="submit" value="Sign Up">
 	</form>
 </div>

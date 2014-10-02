@@ -32,7 +32,7 @@ nav a {
   margin-left: 15px;
 }
 
-#login {
+#login, #create_user {
   text-align: center;
   line-height: 30px;
 }
