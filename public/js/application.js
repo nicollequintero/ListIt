@@ -134,9 +134,11 @@ $(document).ready(function() {
 
 getData = function () {
 
+    console.log(window.location.pathname);
+
     $('#spinner').append('<i class="fa fa-spinner"></i>');
     $.ajax ({
-      url: '/user/1/list/1/data',
+      url: window.location.pathname +"/data",
       type: 'GET',
       dataType: 'json'
     }).done(function(response){
@@ -171,7 +173,12 @@ var List = {
     item.completed = completed;
     item.status = "saved";
     this.items.push(item);
-    View.printItem(item.id, item.status, item.description);
+    if (completed) {
+      View.printCompletedItem(item.id, item.description);
+    }
+    else {
+      View.printItem(item.id, item.description);
+    };
   },
   save: function() {
     this.items.forEach(function(item){
@@ -273,8 +280,11 @@ var View = {
   disableListForm: function() {
     $('#create_list_form :input').attr('disabled',true);
   },
-  printItem: function(id, status, description) {
-    $('#item_list').append('<div class="item" id="' + id + '"><form><input type="checkbox" class="checkbox" value=""><span class="description">' + description + '</span></form></div>')
+  printItem: function(id, description) {
+    $('#item_list').append('<div class="item" id="' + id + '"><form><input type="checkbox" class="checkbox"><span class="description">' + description + '</span></form></div>')
+  },
+  printCompletedItem: function(id, description) {
+    $('#item_list').append('<div class="item, strike_through" id="' + id + '"><form><input type="checkbox" class="checkbox" checked><span class="description">' + description + '</span></form></div>')
   },
   clearItemInput: function() {
     $('input[name="description"]').val("");
