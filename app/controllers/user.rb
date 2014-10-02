@@ -8,3 +8,10 @@ end
 get '/user' do 
   erb :create_user
 end
+
+post '/user' do 
+  user = User.new(params[:user])
+  if user.valid?
+  end
+  redirect '/session'
+end
