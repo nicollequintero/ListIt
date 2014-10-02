@@ -325,7 +325,7 @@ var View = {
     $('#create_list_form').hide();
   },
   changePageHeader: function(name) {
-    $('h1').text("Editing '" + name + "'")
+    $('h1').text(name)
   },
   errorEmptyField: function() {
     $('#item_description_error').text("Description cannot be empty");
