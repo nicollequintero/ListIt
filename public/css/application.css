@@ -103,3 +103,23 @@ button:disabled {
   margin-right: 10px;
 }
 
+table td {
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h1 {
+  font-family: "Roboto Slab";
+  font-size: 40px;
+  text-align: center;
+  color: gray;
+}
+
+
