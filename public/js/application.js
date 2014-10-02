@@ -1,34 +1,5 @@
 $(document).ready(function() {
 
-  // $('table a').click(function(e) {
-  //   console.log("entering on click remote")
-  //   e.preventDefault();
-  //   // $('body').css('background-color','red');
-
-  //   $.ajax ({
-  //     url: '/user/1/list/1',
-  //     type: 'GET',
-  //     dataType: 'json'
-  //   }).done(function(response){
-      
-  //     List.init(response.list.id, response.list.name);
-  //     View.showItemFields();
-  //     View.disableListForm();
-  //     View.disableUpdate();
-  //     View.disableDelete();
-  //     View.disableSave();
-  //     View.hideListForm();
-  //     View.changePageHeader(List.name);
-
-  //     items = response.items
-  //     for(x = 0; x< items.length; x ++) {
-  //       // console.log(items[x].description);
-  //       List.addItemDB(items[x].description, items[x].id, items[x].completed)
-  //     };
-  //   });
-
-  // });
-
   $('#create_list_form').submit(function(e){
     e.preventDefault();
     
