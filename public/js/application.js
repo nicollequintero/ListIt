@@ -1,5 +1,38 @@
 $(document).ready(function() {
 
+  $('#create_user_form').submit(function(e){
+    e.preventDefault();
+
+    $.ajax ({
+      url: $(e.target)attr("action"),
+      type: "POST",
+      data: $(e.target).serialize(),
+      dataType: "json"
+    }).done(function(response){
+      //if error then show error in div
+      //else redirect to login page
+    });
+  });
+
+  $('#list_delete').submit(function(e){
+    e.preventDefault();
+
+    //find div of the row using closest tr
+    //row = $(e.target).closest('tr')
+    
+    //replace the insides of this td div with
+    //$(e.target).parent().append('<div id="spinner"><i class="fa fa-spinner"></i></div>');
+
+    $.ajax ({
+      url: $(e.target)attr("action"),
+      type: "DELETE",
+    }).done(function (response){
+      //remove the div from the row
+      //row.hide(); or remove
+      //$('#spinner').hide();
+    });
+  });
+
   $('#create_list_form').submit(function(e){
     e.preventDefault();
     
