@@ -25,7 +25,7 @@ end
 
 get '/user/:user_id/list/:list_id/data' do 
   @list = List.find(params[:list_id])
-  {list: @list, items: @list.items}.to_json
+  {list: @list, items: @list.items.order(:created_at)}.to_json
 end
 
 delete '/user/:user_id/list/:list_id' do 

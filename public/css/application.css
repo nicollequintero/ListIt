@@ -93,6 +93,8 @@ button:disabled {
 
 .strike_through {
   text-decoration: line-through;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .item {
